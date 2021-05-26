@@ -1,0 +1,9 @@
+Pods/
+.DS_Store
+xcuserdata/
+*.xcworkspace/
+GoogleService-Info.plist
+Secrets
+Secrets.tar
+Readme-2.md
+Readme.md
