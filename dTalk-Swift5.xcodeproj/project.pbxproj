@@ -26,7 +26,7 @@
 		547F0A5925FBBC5C00C45990 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547F0A5825FBBC5C00C45990 /* ProfileViewController.swift */; };
 		54B90A022657B51700066444 /* NewConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B90A012657B51700066444 /* NewConversationCell.swift */; };
 		54BD54A4262FE39000785BF2 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BD54A3262FE39000785BF2 /* ConversationTableViewCell.swift */; };
-		54BD54A726300DEF00785BF2 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = 54BD54A626300DEF00785BF2 /* Readme.md */; };
+		54BD54A726300DEF00785BF2 /* Readme-3.md in Resources */ = {isa = PBXBuildFile; fileRef = 54BD54A626300DEF00785BF2 /* Readme-3.md */; };
 		54ECE4EB261C3E5A00837903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54ECE4EA261C3E5A00837903 /* Assets.xcassets */; };
 		54ECE4F2261C422900837903 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54ECE4F1261C422900837903 /* Extensions.swift */; };
 		572A0898FD4D2978426332B7 /* Pods_dTalk_Swift5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E604341F1C16DBF6D7FC18AA /* Pods_dTalk_Swift5.framework */; };
@@ -54,7 +54,7 @@
 		547F0A5825FBBC5C00C45990 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		54B90A012657B51700066444 /* NewConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationCell.swift; sourceTree = "<group>"; };
 		54BD54A3262FE39000785BF2 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
-		54BD54A626300DEF00785BF2 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		54BD54A626300DEF00785BF2 /* Readme-3.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Readme-3.md"; sourceTree = "<group>"; };
 		54ECE4EA261C3E5A00837903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Storyboard/Assets.xcassets; sourceTree = "<group>"; };
 		54ECE4F1261C422900837903 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B4D7C7DE5F6541A7634AC874 /* Pods-dTalk-Swift5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dTalk-Swift5.debug.xcconfig"; path = "Target Support Files/Pods-dTalk-Swift5/Pods-dTalk-Swift5.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 		547F0A2825FBB8B400C45990 /* dTalk-Swift5 */ = {
 			isa = PBXGroup;
 			children = (
-				54BD54A626300DEF00785BF2 /* Readme.md */,
+				54BD54A626300DEF00785BF2 /* Readme-3.md */,
 				544898A926340B0400A92570 /* Readme-2.md */,
 				547E52E8261DB29A00406E6A /* GoogleService-Info.plist */,
 				547F0A4225FBB9E100C45990 /* Resources */,
@@ -263,7 +263,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54BD54A726300DEF00785BF2 /* Readme.md in Resources */,
+				54BD54A726300DEF00785BF2 /* Readme-3.md in Resources */,
 				547F0A3625FBB8B800C45990 /* LaunchScreen.storyboard in Resources */,
 				547E52E9261DB29A00406E6A /* GoogleService-Info.plist in Resources */,
 				544898AA26340B0400A92570 /* Readme-2.md in Resources */,
