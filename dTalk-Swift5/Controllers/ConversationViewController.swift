@@ -52,7 +52,7 @@ class ConversationViewController: UIViewController {
     }()
     
     private var loginObserver : NSObjectProtocol?
-
+    
     override func viewDidLoad() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose,
                                                             target: self,
@@ -162,7 +162,7 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
         cell.configure(with: model)
         return cell
     }
-   
+    
     /// User select a chat window and it opens by the following command
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -170,6 +170,10 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
         
         let model = conversation[indexPath.row]
         
+        openConversation(model)
+    }
+    
+    func openConversation(_ model : Conversation){
         let vc = ChatViewController(email: model.otherUserEmail, id: model.id)
         vc.title = model.name
         vc.navigationItem.largeTitleDisplayMode = .never
@@ -178,9 +182,25 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
     
     @objc private func didTapComposeButton() {
         let vc = NewConversationViewController()
-        vc.completion = { [weak self] result in // Weak Self is used to avoid memory retendency
-          //  print("\(result)")
-            self?.createNewConversation(result: result)
+        vc.completion = { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            let currentConversation = strongSelf.conversation
+            
+            if let targetConversation = currentConversation.first(where: {
+                $0.otherUserEmail == DatabaseManager.safeEmail(emailAddress: result.email)
+            }){
+                let vc = ChatViewController(email: targetConversation.otherUserEmail, id: targetConversation.id)
+                vc.isNewConversation = false
+                vc.title = targetConversation.name
+                vc.navigationItem.largeTitleDisplayMode = .never
+                strongSelf.navigationController?.pushViewController(vc, animated: true)
+            } else {
+                strongSelf.createNewConversation(result: result)
+            }
+            
         }
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true)
@@ -188,8 +208,14 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
     
     private func createNewConversation(result : SearchResult) {
         
+        // Check in database if conversation between two users exist
+        // if it does, reuse conversation id
+        // otherwise use existing code
+        
+        
+        
         let name = result.name
-        let email = result.email
+        let email = DatabaseManager.safeEmail(emailAddress: result.email)
         
         let vc = ChatViewController(email: email, id: nil) // Please check this 15:16 - Module 11
         vc.isNewConversation = true

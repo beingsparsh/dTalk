@@ -35,11 +35,10 @@ extension DatabaseManager {
     /// Validate  New User (So no two user shares the same username)
     public func userExists(with email: String, completion : @escaping ((Bool) -> Void)) {
         
-        var safeEmail = email.replacingOccurrences(of: ".", with: "-")
-        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
         
         database.child(safeEmail).observeSingleEvent(of: .value, with: {snapshot in
-            guard snapshot.value as? String != nil else {
+            guard snapshot.value as? [String : Any] != nil else {
                 completion(false)
                 return
             }
@@ -657,7 +656,14 @@ extension DatabaseManager {
         
     }
     
-    
+    public func conversationExist(with targetRecipientEmail: String, completion: @escaping (Result<String,Error>) -> Void){
+        let safeRecipientEmail = DatabaseManager.safeEmail(emailAddress: targetRecipientEmail)
+        guard let senderEmail = UserDefaults.standard.value(forKey: "email") as? String else {
+            return
+        }
+        let safeSenderEmail = DatabaseManager.safeEmail(emailAddress: senderEmail)
+        
+    }
 }
 
 
