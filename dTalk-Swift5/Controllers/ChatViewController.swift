@@ -261,7 +261,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate{
                               sentDate: Date(),
                               kind: .text(text))
         
-        // Send Messages
+        // Send Messages -- need to append this if need to rectify the issue
         if isNewConversation {
             // Create New Chat Box For the user to chat with the other user (add convo in the database)
             DatabaseManager.shared.createNewConverstation(with: otherUserEmail, name: name, firstMessage: message, completion: { [weak self] success in
