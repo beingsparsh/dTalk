@@ -208,20 +208,38 @@ extension ConversationViewController : UITableViewDelegate, UITableViewDataSourc
     
     private func createNewConversation(result : SearchResult) {
         
+        let name = result.name
+        let email = DatabaseManager.safeEmail(emailAddress: result.email)
+        
         // Check in database if conversation between two users exist
         // if it does, reuse conversation id
         // otherwise use existing code
         
+        DatabaseManager.shared.conversationExist(with: email, completion: { [weak self] result in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            
+            case.success(let conversationId):
+                let vc = ChatViewController(email: email, id: conversationId) // Please check this 15:16 - Module 11
+                vc.isNewConversation = false
+                vc.title = name
+                vc.navigationItem.largeTitleDisplayMode = .never
+                strongSelf.navigationController?.pushViewController(vc, animated: true)
+            
+            case.failure(_):
+                let vc = ChatViewController(email: email, id: nil) // Please check this 15:16 - Module 11
+                vc.isNewConversation = true
+                vc.title = name
+                vc.navigationItem.largeTitleDisplayMode = .never
+                strongSelf.navigationController?.pushViewController(vc, animated: true)
+            }
+        })
+        
+       
         
         
-        let name = result.name
-        let email = DatabaseManager.safeEmail(emailAddress: result.email)
-        
-        let vc = ChatViewController(email: email, id: nil) // Please check this 15:16 - Module 11
-        vc.isNewConversation = true
-        vc.title = name
-        vc.navigationItem.largeTitleDisplayMode = .never
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     
