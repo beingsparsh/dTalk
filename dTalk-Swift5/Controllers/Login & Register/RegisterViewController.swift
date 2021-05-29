@@ -113,7 +113,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Log In"
+        title = "Sign Up"
         view.backgroundColor = .white // Background color of login screen(may add animation and logo at this page
         /*
          navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register",

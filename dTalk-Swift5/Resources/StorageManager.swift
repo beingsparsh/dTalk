@@ -20,7 +20,8 @@ final class StorageManager {
     
     public typealias uploadPictureCompletion = (Result<String,Error>) -> Void
     
-    /// Upload pictures to firebase storage and return completeion with URL String to download
+    // Upload pictures to firebase storage and return completeion with URL String to download
+    
     public func uploadProfilePicture (with data: Data, fileName : String, completion : @escaping uploadPictureCompletion) {
         storage.child("images/\(fileName)").putData(data, metadata: nil, completion: { metadata, error in
             guard error == nil else{
@@ -75,6 +76,8 @@ final class StorageManager {
         // Upload video to firebase database that is sent in a conversation, and return the url for that video.
         
         public func uploadMessageVideo (with fileUrl: URL, fileName : String, completion : @escaping uploadPictureCompletion) {
+            
+            
             storage.child("message_videos/\(fileName)").putFile(from: fileUrl, metadata: nil, completion: { [weak self] metadata, error in
                 guard error == nil else{
                     //Failed
