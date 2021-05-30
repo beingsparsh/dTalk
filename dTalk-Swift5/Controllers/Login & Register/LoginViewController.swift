@@ -10,6 +10,7 @@ import FirebaseAuth
 import FBSDKLoginKit
 import GoogleSignIn
 import JGProgressHUD
+import MessageUI // Adding email support for customer support
 
 class LoginViewController: UIViewController {
     
@@ -89,6 +90,18 @@ class LoginViewController: UIViewController {
     
     private let googleLogInButton = GIDSignInButton()
     
+    //    ----------------------------------------------------------- 30 May, 2021 - 11:48 PM
+    private let emailSupport : UIButton = {
+        let button = UIButton()
+        button.setTitle("Email Support", for: .normal)
+        button.backgroundColor = .white
+        button.setTitleColor(.blue, for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.masksToBounds = true
+        button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
+        return button
+    }()
+    
     private var loginObserver : NSObjectProtocol?
     
     override func viewDidLoad() {
@@ -128,6 +141,11 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(loginButton)
         scrollView.addSubview(FBloginButton)
         scrollView.addSubview(googleLogInButton)
+        
+        scrollView.addSubview(emailSupport)
+        emailSupport.addTarget(self,
+                               action: #selector(emailSupportTapped),
+                               for: .touchUpInside)
         
         
     }
@@ -170,6 +188,44 @@ class LoginViewController: UIViewController {
                                          y: FBloginButton.bottom + 20,
                                          width: scrollView.width - 60,
                                          height: 52)
+        
+        emailSupport.frame = CGRect(x: 30,
+                                   y: googleLogInButton.bottom + 40,
+                                   width: scrollView.width - 60,
+                                   height: 52)
+    }
+    
+    //----------------------------- 31 May 2021 - 12:25 AM
+    
+    @objc private func emailSupportTapped(){
+        //self.view.backgroundColor = .systemYellow
+        print("emailSupport Button Tapped")
+        showMailComposer()
+    }
+    
+    func showMailComposer() {
+        
+        spinner.show(in: view)
+        
+        print("spineer started")
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            print("Cant send mail through a simulator")
+            DispatchQueue.main.async {
+                self.spinner.dismiss()
+            }
+            return
+        }
+        
+        spinner.dismiss()
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = self
+        composer.setToRecipients(["singhsparsh@ducic.ac.in"])
+        composer.setSubject("Help")
+        composer.setMessageBody("Hi, I need your help with ", isHTML: false)
+        
+        present(composer, animated: true)
     }
     
     // Password is 8-Character Long !!
@@ -386,4 +442,31 @@ extension LoginViewController : LoginButtonDelegate{
     }
     
     
+}
+
+
+//---------------------
+extension LoginViewController : MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        if let _ = error {
+            // Mail was not sent
+            controller.dismiss(animated: true)
+            return
+        }
+        
+        switch result {
+        case .cancelled :
+            print("cancelled")
+        case .saved:
+            print("saved")
+        case .sent:
+            print("sent")
+        case .failed:
+            print("failed")
+        }
+        
+        controller.dismiss(animated: true)
+    }
 }

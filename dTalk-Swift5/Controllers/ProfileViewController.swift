@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = createTableHeader()
-        
     }
     
     func createTableHeader() -> UIView? {
