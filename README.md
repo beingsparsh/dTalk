@@ -21,6 +21,8 @@ After installing, open "dTalk-Swift5.xcworkspace". Add "googleservice-info.plist
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+Find the [Project Report](https://drive.google.com/file/d/1ups1UOt3PSe7oSSUMCY9vuwVSdVd3JS6/view?usp=sharing) here.
+
 ## Present Work
 
 The application currently support instant messaging and the option to send photos and videos using the phone's camera or gallery.
