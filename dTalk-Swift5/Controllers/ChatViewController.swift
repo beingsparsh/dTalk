@@ -253,7 +253,6 @@ extension ChatViewController: InputBarAccessoryViewDelegate{
         else {
             return
         }
-        
         print("Sending: \(text)")
         
         let message = Message(sender: selfSender,
