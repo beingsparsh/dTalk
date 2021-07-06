@@ -255,6 +255,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate{
         }
         print("Sending: \(text)")
         
+        
+        
         let message = Message(sender: selfSender,
                               messageId: messageID,
                               sentDate: Date(),
@@ -289,6 +291,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate{
                 }
             })
         }
+        
+        inputBar.inputTextView.text = ""
     }
     
     private func createMessageID() -> String? {
